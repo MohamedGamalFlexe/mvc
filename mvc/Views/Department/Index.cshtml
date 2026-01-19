@@ -1,0 +1,60 @@
+﻿@model List<Department>
+
+@{
+    ViewData["Title"] = "Department Index";
+}
+
+<h1>Department Index</h1>
+<h2>@ViewData["Message"]</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>ManagerName</th>
+            <th>Employee Name</th>
+            <th>Employee Salary</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.ManagerName</td>
+                <td>
+                    @if (student.Emps != null && student.Emps.Any())
+                    {
+                        foreach (var emp in student.Emps)
+                        {
+                            <div>@emp.Name</div>
+                        }
+                    }
+                    else
+                    {
+                        <div>No Employees</div>
+                    }
+                </td>
+                <td>
+                    @if (student.Emps != null && student.Emps.Any())
+                    {
+                        foreach (var emp in student.Emps)
+                        {
+                            <div>@emp.Salary</div>
+                        }
+                    }
+                    else
+                    {
+                        <div>No Employees</div>
+                    }
+                </td>
+                <td>
+                    <a href="/Student/Details?id=@student.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

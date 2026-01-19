@@ -1,0 +1,25 @@
+﻿<h1>View 1</h1>
+
+<style>
+    h1{
+        color: red;
+    }
+</style>
+
+@{
+    int x = 10;
+    int y = x + 10;
+}
+
+<h2>@x</h2>
+<h2>@y</h2>
+
+@if(y > x)
+{
+    <h2>y > x</h2> 
+}
+
+@for (int i = 0; i < 10; i++)
+{
+    <h1>@i</h1>
+}
