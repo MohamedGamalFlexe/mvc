@@ -13,5 +13,22 @@ namespace mvc.Controllers
             ViewData["Message"] = "Welcome to ITI";
             return View("Index", departmentsList);
         }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SaveAdd(Department dep)
+        {
+            if (dep.Name != null)
+            {
+                context.Departments.Add(dep);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View("Add", dep);
+        }
     }
 }

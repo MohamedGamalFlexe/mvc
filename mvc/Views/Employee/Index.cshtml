@@ -14,21 +14,23 @@
             <th>JobTitle</th>
             <th>ImageURL</th>
             <th>Address</th>
+            <th>Department</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var student in Model)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@student.Id</td>
-                <td>@student.Name</td>
-                <td>@student.Salary</td>
-                <td>@student.JobTitle</td>
-                <td>@student.ImageURL</td>
-                <td>@student.Address</td>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Salary</td>
+                <td>@item.JobTitle</td>
+                <td>@item.ImageURL</td>
+                <td>@item.Address</td>
+                <td>@item.Department.Name</td>
                 <td>
-                    <a href="/Student/Details?id=@student.Id">Edit</a>
+                    <a href="/Employee/Edit/@item.Id">Edit</a>
                 </td>
             </tr>
         }
