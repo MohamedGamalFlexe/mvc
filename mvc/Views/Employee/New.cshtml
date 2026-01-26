@@ -1,0 +1,33 @@
+﻿@model Employee
+
+<h1>New Employee</h1>
+
+<form method="post" asp-action="SaveAdd" asp-controller="Employee">
+
+    @Html.LabelFor(e => e.Name)
+    @Html.TextBoxFor(e => e.Name, new { @class = "form-control m-2" })
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <br />
+
+    @Html.LabelFor(e => e.Salary)
+    @Html.TextBoxFor(e => e.Salary, new { @class = "form-control m-2" })
+
+    @Html.LabelFor(e => e.JobTitle)
+    @Html.TextBoxFor(e => e.JobTitle, new { @class = "form-control m-2" })
+
+    @Html.LabelFor(e => e.ImageURL)
+    @Html.TextBoxFor(e => e.ImageURL, new { @class = "form-control m-2" })
+
+    @Html.LabelFor(e => e.Address)
+    @Html.TextBoxFor(e => e.Address, new { @class = "form-control m-2" })
+
+    @Html.LabelFor(e => e.DepartmentID)
+    @Html.DropDownListFor(
+    e => e.DepartmentID,
+        new SelectList(ViewBag.Departments, "Id", "Name"),
+        "Select Department",
+        new { @class = "form-control m-2" }
+        )
+
+    <button type="submit" class="btn btn-primary mt-2">Create</button>
+</form>

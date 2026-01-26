@@ -14,6 +14,54 @@ namespace mvc.Controllers
             return View("Index", employeesList);
         }
 
+        public IActionResult New()
+        {
+            List<Department> DepartmentList = context.Departments.ToList();
+            ViewBag.Departments = DepartmentList;
+            return View("New");
+        }
+
+        [HttpPost]
+        public IActionResult SaveAdd(Employee EmpFromRequest)
+        {
+            if(EmpFromRequest.Name != null && EmpFromRequest.Salary >= 6000)
+            {
+                context.Employees.Add(EmpFromRequest);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            List<Department> DepartmentList = context.Departments.ToList();
+            ViewBag.Departments = DepartmentList;
+            return View("New");
+            //if (!ModelState.IsValid)
+            //{
+            //    ViewBag.Departments = context.Departments.ToList();
+            //    return View("Create", EmpFromRequest);
+            //}
+
+            //context.Employees.Add(EmpFromRequest);
+            //context.SaveChanges();
+
+            //return RedirectToAction("Create");
+
+
+            //Employee emp = new Employee();
+            //emp.Name = EmpFromRequest.Name;
+            //emp.Salary = EmpFromRequest.Salary;
+            //emp.JobTitle = EmpFromRequest.JobTitle;
+            //emp.ImageURL = EmpFromRequest.ImageURL;
+            //emp.Address = EmpFromRequest.Address;
+            //emp.DepartmentID = EmpFromRequest.DepartmentID;
+            //context.Employees.Add(emp);
+            //context.SaveChanges();
+
+
+            //ViewBag.Departments = context.Departments.ToList();
+            //return View("Create");
+        }
+
+
+
         public IActionResult Edit(int id)
         {
             Employee empModel = context.Employees.FirstOrDefault(e => e.Id == id);

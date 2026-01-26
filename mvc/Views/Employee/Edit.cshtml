@@ -3,9 +3,12 @@
     ViewData["Title"] = "Edit";
 }
 
+@Html.ActionLink("Back to List", "Index", "Employee", null, new { @class = "btn btn-secondary mb-3" })
+
+
 <h1>Edit</h1>
 
-<form method="post" action="/Employee/SaveEdit?id=@Model.Id">
+@* <form method="post" action="/Employee/SaveEdit?id=@Model.Id">
     <input type="hidden" value="@Model.Id" id="Id" name="Id" />
     <div class="form-group m-1">
         <label for="Name">Name</label>
@@ -38,4 +41,23 @@
     </div>
 
     <button type="submit" class="btn btn-primary mt-2">Save Edit</button>
-</form>
+</form> *@
+
+@* @Html.TextBox("Name") get value from ViewData, ViewBag, Model automatically *@ 
+
+
+    <form method="post" asp-action="SaveEdit" asp-controller="Employee" asp-route-id="@Model.Id" >
+        @Html.Label("Name")
+        @Html.TextBox("Name", null, new { @class = "form-control m-2" })
+        @Html.Label("Salary")
+        @Html.TextBox("Salary", null, new { @class = "form-control m-2" })
+        @Html.Label("Job Title")
+        @Html.TextBox("JobTitle", null, new { @class = "form-control m-2" })
+        @Html.Label("Image URL")
+        @Html.TextBox("ImageURL", null, new { @class = "form-control m-2" })
+        @Html.Label("Address")
+        @Html.TextBox("Address", null, new { @class = "form-control m-2" })
+        @Html.Label("Department")
+        @Html.DropDownList("DepartmentId", new SelectList(Model.DeptList, "Id", "Name", Model.DepartmentID), null, new { @class = "form-control m-2" })
+        <button type="submit" class="btn btn-primary mt-2">Save Edit</button>
+    </form>
